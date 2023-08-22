@@ -1,12 +1,13 @@
 Indicaciones Tarea
 
 Tarea Semana 3 de Programación 2, POO
-1 Tarea evaluda
+
 En grupos de hasta tres personas, deberán desarrollar las actividades propuestas en el lenguaje de
 programación de su elección. Los códigos y resultados deben ser alojados en un repositorio público,
 preferiblemente en GitHub.
-La tarea será evaluada con una defensa oral el día miércoles 30 de agosto.
+
 Fecha de entrega: Miércoles 30/08.
+
 1.1 Sistema de Reservación para una Aerolínea
 Objetivo:
 Desarrollar un sistema de reservación de vuelos utilizando programación orientada a objetos en
@@ -20,25 +21,25 @@ Deberás crear clases para representar aviones, vuelos, pasajeros y reservacione
 5. Ver la lista de pasajeros en un vuelo.
 Clases a desarrollar:
 1. Avion: Representa un avión con:
-• Modelo del avión.
-• Número de asientos.
-• Vuelo: Representa un vuelo con:
+  • Modelo del avión.
+  • Número de asientos.
+  • Vuelo: Representa un vuelo con:
 2. Número de vuelo.
-• Origen.
-• Destino.
-• Fecha y hora.
-• Avión asignado.
+  • Origen.
+  • Destino.
+  • Fecha y hora.
+  • Avión asignado.
 1
 • Lista de reservaciones.
 • Pasajero: Representa a un pasajero con:
 3. Nombre.
-• Número de pasaporte.
-• Lista de vuelos reservados.
-• Reservacion: Representa una reservación con:
+  • Número de pasaporte.
+  • Lista de vuelos reservados.
+  • Reservacion: Representa una reservación con:
 4. Número de reservación.
-• Pasajero.
-• Vuelo.
-• Estado (reservado, cancelado).
+  • Pasajero.
+  • Vuelo.
+  • Estado (reservado, cancelado).
 Funcionalidades:
 1. Crear vuelos y añadirlos a una lista de vuelos disponibles. Mostrar vuelos disponibles.
 2. Reservar un vuelo: Al reservar, se crea una nueva reservación y se añade a la lista de reservaciones del vuelo y del pasajero.
@@ -47,6 +48,7 @@ Funcionalidades:
 5. Mostrar la lista de pasajeros de un vuelo.
 6. Validar que no se puedan sobrepasar el número de asientos de un avión al realizar reservaciones.
 7. Validar que un pasajero no pueda reservar el mismo vuelo más de una vez.
+
 1.2 Sistema de Gestión para una Biblioteca
 Objetivo:
 Desarrollar un sistema de gestión para una biblioteca utilizando programación orientada a objetos
