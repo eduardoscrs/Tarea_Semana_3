@@ -50,11 +50,19 @@ Funcionalidades:
 7. Validar que un pasajero no pueda reservar el mismo vuelo más de una vez.
 
 1.2 Sistema de Gestión para una Biblioteca
+
 Objetivo:
 Desarrollar un sistema de gestión para una biblioteca utilizando programación orientada a objetos
 en Python.
+
 Descripción:
 Deberás crear clases para representar libros, usuarios, préstamos y el catálogo de la biblioteca. El
-sistema permitirá: 1. Añadir y eliminar libros al catálogo. 2. Registrar usuarios. 3. Prestar y
-devolver libros. 4. Consultar libros disponibles. 5. Ver el historial de préstamos de un usuario.
-Funcionalidades 1. Defina usted las funcionalidades
+sistema permitirá:
+1. Añadir y eliminar libros al catálogo.
+2. Registrar usuarios.
+3. Prestar y devolver libros
+4. Consultar libros disponibles.
+5. Ver el historial de préstamos de un usuario.
+   
+Funcionalidades
+1. Defina usted las funcionalidades
