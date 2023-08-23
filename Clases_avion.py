@@ -22,7 +22,8 @@ class Vuelo:
         self.fecha_hora = fecha_hora
         self.avion = avion
         self.reservaciones = []
-        def reservar(self, pasajero):
+        
+        def reservar(self, pasajero): #! falta revisar si el pasajero ya tiene una reservacion en este vuelo o si ya no hay asientos disponibles
             reservacion = Reservacion(len(self.reservaciones)+1, pasajero, self, "reservado")
             self.reservaciones.append(reservacion)
             pasajero.vuelos_reservados.append(reservacion)
@@ -44,7 +45,7 @@ class Pasajero:
         self.nombre = nombre
         self.num_pasaporte = num_pasaporte
         self.vuelos_reservados = []
-        
+        self.reservaciones = []      
         
 #* Reservación: Representa una reservación con: -Número de reservación. -Pasajero. -Vuelo. Estado (reservado, cancelado).
 
