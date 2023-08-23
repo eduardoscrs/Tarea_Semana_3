@@ -23,12 +23,19 @@ class Vuelo:
         self.avion = avion
         self.reservaciones = []
         
-        def reservar(self, pasajero): #! falta revisar si el pasajero ya tiene una reservacion en este vuelo o si ya no hay asientos disponibles
-            reservacion = Reservacion(len(self.reservaciones)+1, pasajero, self, "reservado")
-            self.reservaciones.append(reservacion)
-            pasajero.vuelos_reservados.append(reservacion)
+    def reservar(self, pasajero): #! falta revisar si el pasajero ya tiene una reservacion en este vuelo o si ya no hay asientos disponibles
+        if len(self.reservaciones) >= self.avion.num_asientos:
+            print("No hay asientos disponibles para este vuelo")
+            return
+        for reservacion in self.reservaciones:
+            if reservacion.pasajero == pasajero:
+                print("El pasajero ya tiene una reservación en este vuelo")
+                return               
+        reservacion = Reservacion(len(self.reservaciones)+1, pasajero, self, "reservado")    
+        self.reservaciones.append(reservacion)
+        pasajero.vuelos_reservados.append(reservacion)
             
-        def cancelar_reservacion(self, num_reservacion):
+    def cancelar_reservacion(self, num_reservacion):
             for reservacion in self.reservaciones:
                 if reservacion.num_reservacion == num_reservacion:
                     reservacion.estado = "cancelado"
