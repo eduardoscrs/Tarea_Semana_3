@@ -23,7 +23,7 @@ class Vuelo:
         self.avion = avion
         self.reservaciones = []
         
-    def reservar(self, pasajero): #! falta revisar si el pasajero ya tiene una reservacion en este vuelo o si ya no hay asientos disponibles
+    def reservar(self, pasajero): 
         if len(self.reservaciones) >= self.avion.num_asientos:
             print("No hay asientos disponibles para este vuelo")
             return
