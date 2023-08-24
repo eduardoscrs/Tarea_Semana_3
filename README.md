@@ -6,7 +6,7 @@ En grupos de hasta tres personas, deberán desarrollar las actividades propuesta
 
 Fecha de entrega: Miércoles 30/08.
 
-# Sistema de Reservación para una Aerolínea
+## Sistema de Reservación para una Aerolínea
 Objetivo:
 Desarrollar un sistema de reservación de vuelos utilizando programación orientada a objetos en Python.
 
@@ -69,7 +69,7 @@ Estado (reservado, cancelado).
   
 
 
-# Sistema de Gestión para una Biblioteca
+## Sistema de Gestión para una Biblioteca
 
 
 ### Descripción:
