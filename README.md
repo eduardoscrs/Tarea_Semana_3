@@ -10,7 +10,7 @@ Fecha de entrega: Miércoles 30/08.
 Objetivo:
 Desarrollar un sistema de reservación de vuelos utilizando programación orientada a objetos en Python.
 
-Descripción:
+## Descripción:
 
 Deberás crear clases para representar aviones, vuelos, pasajeros y reservaciones. El sistema permitirá a los usuarios:
 
@@ -24,7 +24,7 @@ Deberás crear clases para representar aviones, vuelos, pasajeros y reservacione
 
 5.  Ver la lista de pasajeros en un vuelo.
 
-Clases a desarrollar:
+## Clases a desarrollar:
 
 Avión: Representa un avión con:
 	Modelo del avión.
@@ -50,7 +50,7 @@ Reservación: Representa una reservación con:
 -Vuelo.
 Estado (reservado, cancelado).
 
-Funcionalidades:
+## Funcionalidades:
 
 1.  Crear vuelos y añadirlos a una lista de vuelos disponibles. Mostrar vuelos disponibles.
 
@@ -72,7 +72,7 @@ Funcionalidades:
 # Sistema de Gestión para una Biblioteca
 
 
-Descripción:
+## Descripción:
 
 Deberás crear clases para representar libros, usuarios, préstamos y el catálogo de la biblioteca. El
 sistema permitirá:
@@ -87,6 +87,6 @@ sistema permitirá:
 
 5.  Ver el historial de préstamos de un usuario.
 
-Funcionalidades
+## Funcionalidades
 
 1.  Defina usted las funcionalidades
