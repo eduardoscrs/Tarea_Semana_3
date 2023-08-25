@@ -8,6 +8,10 @@ class Avion:
         self.num_filas = 24
         self.num_columnas = 6
         self.asientos_disponibles = [[True] * self.num_columnas for _ in range(self.num_filas)]
+Avion_1 = Avion("Airbus A320")
+Avion_2 = Avion("Embraer E195")
+Avion_3 = Avion("Boeing 737")
+
         #se crea una lista de listas vacias, donde cada lista interior representa una fila de asientos
         #el numero de columnas del interior, se repetira segun el numero total columnas que hayan en el avion 
 
@@ -85,11 +89,12 @@ class Reservacion:
 ##############################################################################################
 #                                       Main 
 ##############################################################################################
+Vuelo_1 = Vuelo("AR 1240", "Chile", "New York", "12-08-2023 14:00", Avion_1)
+Vuelo_2 = Vuelo("LA 1311", "Peru", "China", "08-04-2023 13:30", Avion_2)
+Vuelo_3 = Vuelo("AK 4200", "Colombia", "EspaÃ±a", "01-12-2023 16:00", Avion_3)
 
 def main():
-    avion = Avion("Boeing 737")
     pasajero = Pasajero("John Doe", "ABC123")
-    vuelo = Vuelo("VN123", "Ciudad A", "Ciudad B", "2023-09-01 10:00", avion)
 
     while True:
         print("1. Reservar vuelo")
@@ -97,12 +102,40 @@ def main():
         print("3. Salir")
         opcion = input("Elija una opción: ")
 
-        if opcion == "1":
-            fila = int(input("Elija la fila del asiento: "))
-            columna = int(input("Elija la columna del asiento: "))
-            vuelo.reservar(pasajero, fila, columna)
+        if  opcion == "1":
+            
+            print("1. AR 1240", "Chile", "New York", "12-08-2023 14:00", "avion1: Airbus A320")
+            print("2. LA 1311", "Peru", "China", "08-04-2023 13:30", "avion2: Embraer E195")
+            print("3. AK 4200", "Colombia", "EspaÃ±a", "01-12-2023 16:00", "avion3: Boeing 737" )
+            opcion1= input("elija el vuelo deseado: ")
 
-        elif opcion == "2":
+            if opcion1 == "1":
+                vuelo = Vuelo("AR 1240", "Chile", "New York", "12-08-2023 14:00", Avion_1)
+                fila = int(input("Elija la fila del asiento: "))
+                columna = int(input("Elija la columna del asiento: "))
+                vuelo.reservar(pasajero, fila, columna)
+
+
+            elif opcion1 == "2":
+                vuelo = Vuelo("LA 1311", "Peru", "China", "08-04-2023 13:30", Avion_2)
+                fila = int(input("Elija la fila del asiento: "))
+                columna = int(input("Elija la columna del asiento: "))
+                vuelo.reservar(pasajero, fila, columna)
+
+
+            elif opcion1 == "3":
+                vuelo = Vuelo("AK 4200", "Colombia", "España", "01-12-2023 16:00", Avion_3)
+                fila = int(input("Elija la fila del asiento: "))
+                columna = int(input("Elija la columna del asiento: "))
+                vuelo.reservar(pasajero, fila, columna)
+
+
+            else:
+                print("Opción inválida. Seleccione una opción válida.")
+                return 
+
+
+        if  opcion == "2":
             num_reservacion = int(input("Ingrese el número de reservación a cancelar: "))
             vuelo.cancelar_reservacion(num_reservacion)
 
