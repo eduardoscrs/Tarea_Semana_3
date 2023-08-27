@@ -89,4 +89,6 @@ sistema permitirá:
 
 ### Funcionalidades
 
-1.  Defina usted las funcionalidades
+1. Agregar usuarios
+2. Eliminar usuarios
+
