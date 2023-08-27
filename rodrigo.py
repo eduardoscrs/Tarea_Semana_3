@@ -1,5 +1,5 @@
 ##############################################################################################
-#                                       Avion                                                #
+#                                       Avion  
 ##############################################################################################
 from datetime import datetime
 class Avion:
@@ -92,19 +92,23 @@ class Reservacion:
 ##############################################################################################
 def mostrar_menu():
     print(" ")
-    print("1. Reservar vuelo")
-    print("2. Cancelar reservación")
-    print("3. consultar vuelos disponibles")
-    print("4. ver reservaciones")
-    print("5. ver lista de pasajeros del vuelo")
-    print("6. Salir")
+    print("1. registrar pasajero")
+    print("2. Reservar vuelo")
+    print("3. Cancelar reservación")
+    print("4. consultar vuelos disponibles")
+    print("5. ver reservaciones")
+    print("6. ver lista de pasajeros del vuelo")
+    print("7. Salir")
+    print(" ")
     return input("seleccione una opción: ")
+    
 
 Vuelo_1 = Vuelo("AR 1240", "Chile", "New York", "12-08-2023 14:00", Avion_1)
 Vuelo_2 = Vuelo("LA 1311", "Peru", "China", "08-04-2023 13:30", Avion_2)
 Vuelo_3 = Vuelo("AK 4200", "Colombia", "Espana", "01-12-2023 16:00", Avion_3)
 
 def mostrar_vuelos_disponibles():
+    print("")
     print("Vuelos disponibles:")
     print("1. AR 1240 Chile New York 12-08-2023 14:00 avion1: Airbus A320")
     print("2. LA 1311 Peru China 08-04-2023 13:30 avion2: Embraer E195")
@@ -126,50 +130,66 @@ def mostrar_lista_pasajeros(vuelo):
         print(pasajero.pasajero.nombre)
 
 def main():
-    pasajero = Pasajero("John Doe", "ABC123")
+    pasajeros = []
 
     while True:
         opcion = mostrar_menu()
 
         if opcion == "1":
-            mostrar_vuelos_disponibles()
-            opcion_vuelo = input("Elija el número de vuelo: ")
-
-            if opcion_vuelo == "1":
-                vuelo = Vuelo_1
-                fila = int(input("Elija la fila del asiento: "))
-                columna = int(input("Elija la columna del asiento: "))
-                vuelo.reservar(pasajero, fila, columna)
-                print("Reservación realizada con éxito.")
-
-            elif opcion_vuelo == "2":
-                vuelo = Vuelo_2
-                fila = int(input("Elija la fila del asiento: "))
-                columna = int(input("Elija la columna del asiento: "))
-                vuelo.reservar(pasajero, fila, columna)
-                print("Reservación realizada con éxito.")
-
-            elif opcion_vuelo == "3":
-                vuelo = Vuelo_3
-                fila = int(input("Elija la fila del asiento: "))
-                columna = int(input("Elija la columna del asiento: "))
-                vuelo.reservar(pasajero, fila, columna)
-                print("Reservación realizada con éxito.")
-
-            else:
-                print("Opción inválida. Seleccione una opción válida.")
+            nombre = input("Ingrese su nombre y apellido: ")
+            num_pasaporte = input("Ingrese su numero de pasaporte: ")
+            nuevo_pasajero = Pasajero(nombre, num_pasaporte)
+            pasajeros.append(nuevo_pasajero)
+            print("Pasajero registrado con éxito.")
 
         elif opcion == "2":
+            num_pasaporte = input("Ingrese su numero de pasaporte: ")
+
+            # Buscar el pasajero en la lista por número de pasaporte
+            pasajero = None
+            for p in pasajeros:
+                if p.num_pasaporte == num_pasaporte:
+                    pasajero = p
+                    break
+
+            if pasajero is None:
+                print("Pasajero no encontrado.")
+            else:
+                print("Pasajero encontrado:", pasajero.nombre)
+                mostrar_vuelos_disponibles()
+                opcion_vuelo = input("Elija el número de vuelo: ")
+
+                vuelo_seleccionado = None
+                if opcion_vuelo == "1":
+                    vuelo_seleccionado = Vuelo_1
+                elif opcion_vuelo == "2":
+                    vuelo_seleccionado = Vuelo_2
+                elif opcion_vuelo == "3":
+                    vuelo_seleccionado = Vuelo_3
+                else:
+                    print("Opción inválida. Seleccione una opción válida.")
+                    continue
+
+                fila = int(input("Elija la fila del asiento: "))
+                columna = int(input("Elija la columna del asiento: "))
+
+                if not vuelo_seleccionado.avion.asientos_disponibles[fila - 1][columna - 1]:
+                    print("El asiento ya está ocupado.")
+                else:
+                    vuelo_seleccionado.reservar(pasajero, fila, columna)
+                    print("Reservación realizada con éxito.")
+
+        elif opcion == "3":
             num_reservacion = int(input("Ingrese el número de reservación a cancelar: "))
             pasajero.cancelar_reservacion(num_reservacion)
 
-        elif opcion == "3":
+        elif opcion == "4":
             mostrar_vuelos_disponibles()
 
-        elif opcion == "4":
+        elif opcion == "5":
             mostrar_reservaciones(pasajero)
 
-        elif opcion == "5":
+        elif opcion == "6":
             opcion_vuelo = input("Ingrese el número de vuelo: ")
             if opcion_vuelo == "1":
                 mostrar_lista_pasajeros(Vuelo_1)
@@ -180,7 +200,7 @@ def main():
             else:
                 print("Opción inválida. Seleccione una opción válida.")
 
-        elif opcion == "6":
+        elif opcion == "7":
             print("¡Hasta luego!")
             break
 
