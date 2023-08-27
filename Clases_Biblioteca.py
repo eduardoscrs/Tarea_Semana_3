@@ -1,64 +1,64 @@
-# Desarrollar un sistema de gestión para una biblioteca utilizando programación orientada a objetos
-# en Python.
+from datetime import datetime
 
-# todo Deberás crear clases para representar libros, usuarios, préstamos y el catálogo de la biblioteca
-''' 
-    El sistema permitirá: 1. Añadir y eliminar libros al catálogo. 2. Registrar usuarios. 3. Prestar y
-    devolver libros. 4. Consultar libros disponibles. 5. Ver el historial de préstamos de un usuario.
-    Funcionalidades 1. Defina usted las funcionalidades que considere necesarias para el sistema.
-    
-'''
-
-
-class libro:                                                    #se crea la clase libro
-    def __init__(self, autor, año, titulo, genero, estado):     #se crea el constructor de la clase libro
-        self.autor = autor                                      #se crean los atributos de la clase libro
-        self.año = año
+class Libro:
+    def __init__(self, titulo, autor, isbn):
         self.titulo = titulo
-        self.genero = genero
-        self.estado = estado
+        self.autor = autor
+        self.isbn = isbn
+        self.disponible = True
 
-class usuario:                                                  #se crea la clase usuario
-    def __init__(self, nombre, apellido, edad):                 #se crea el constructor de la clase usuario
-        self.nombre = nombre                                    #se crean los atributos de la clase usuario
-        self.apellido = apellido
-        self.edad = edad
-        self.libros_prestados = []
+class Usuario:
+    def __init__(self, nombre, id_usuario):
+        self.nombre = nombre
+        self.id_usuario = id_usuario
+        self.historial_prestamos = []
 
-class prestamo:                                                                             #se crea la clase prestamo        
-    def __init__(self, nombre, apellido, titulo, autor, fecha_prestamo, fecha_devolucion):  #se crea el constructor de la clase usuario
-        self.usuario = usuario                                                              #se crean los atributos de la clase usuario
+class Prestamo:
+    def __init__(self, libro, usuario, fecha_prestamo):
         self.libro = libro
-        self.fecha_prestamo = fecha_prestamo
-        self.fecha_devolucion = fecha_devolucion
-                
-class catalogo:                                 #se crea la clase catalogo
-    def __init__(self, libros):                 #se crea el constructor de la clase catalogo
-        self.libros = libros                    #se crean los atributos de la clase catalogo
-        
-    def agregar_libro(self, libro):             #se crea el metodo agregar libro
+        self.usuario = usuario
+        self.fecha_prestamo = datetime.strptime(fecha_prestamo, '%d-%m-%Y').date()
+        self.fecha_devolucion = None
+
+class Catalogo:
+    def __init__(self):
+        self.libros = []
+
+    def agregar_libro(self, libro):
         self.libros.append(libro)
-        
-    def eliminar_libro(self, libro):        #se crea el metodo eliminar libro
-        self.libros.remove(libro)
-        
-    def consultar_libros(self):             #se crea el metodo consultar libros    
-        for libro in self.libros:            #se crea un ciclo for para recorrer la lista de libros
-            if libro.estado == "disponible": #se crea una condicion para imprimir solo los libros disponibles
-                print(libro.titulo)          #se imprime el titulo del libro
-                
-    def prestar_libro(self, libro, usuario):
-        if libro.estado == "disponible":
-            libro.estado = "prestado"
-            usuario.libros_prestados.append(libro)
-            print("El libro ha sido prestado")
-        else:
-            print("El libro no está disponible")
-            
-    def devolver_libro(self, libro, usuario):
-        if libro.estado == "prestado":
-            libro.estado = "disponible"
-            usuario.libros_prestados.remove(libro)
-            print("El libro ha sido devuelto")
-        else:
-            print("El libro no está prestado")        
+
+    def eliminar_libro(self, libro):
+        if libro in self.libros:
+            self.libros.remove(libro)
+
+    def buscar_libro(self, isbn):
+        for libro in self.libros:
+            if libro.isbn == isbn:
+                return libro
+        return None
+
+    def buscar_usuario(self, id_usuario):
+        for usuario in usuarios:
+            if usuario.id_usuario == id_usuario:
+                return usuario
+        return None
+
+    def consultar_libros_disponibles(self):
+        return [libro for libro in self.libros if libro.disponible]
+
+    def prestar_libro(self, libro, usuario, fecha_prestamo):
+        if libro in self.libros and libro.disponible:
+            prestamo = Prestamo(libro, usuario, fecha_prestamo)
+            libro.disponible = False
+            usuario.historial_prestamos.append(prestamo)
+            return prestamo
+
+    def devolver_libro(self, prestamo, fecha_devolucion):
+        if prestamo in prestamo.usuario.historial_prestamos and not prestamo.fecha_devolucion:
+            prestamo.fecha_devolucion = fecha_devolucion
+            prestamo.libro.disponible = True
+
+    def historial_prestamos_usuario(self, usuario):
+        return usuario.historial_prestamos
+
+d
