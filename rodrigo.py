@@ -102,49 +102,36 @@ def main():
         print("3. Salir")
         opcion = input("Elija una opción: ")
 
-        if  opcion == "1":
-            
+        if opcion == "1":
             print("1. AR 1240", "Chile", "New York", "12-08-2023 14:00", "avion1: Airbus A320")
             print("2. LA 1311", "Peru", "China", "08-04-2023 13:30", "avion2: Embraer E195")
-            print("3. AK 4200", "Colombia", "EspaÃ±a", "01-12-2023 16:00", "avion3: Boeing 737" )
-            opcion1= input("elija el vuelo deseado: ")
-
+            print("3. AK 4200", "Colombia", "España", "01-12-2023 16:00", "avion3: Boeing 737" )
+            opcion1 = input("elija el vuelo deseado: ")
+            
             if opcion1 == "1":
-                vuelo = Vuelo("AR 1240", "Chile", "New York", "12-08-2023 14:00", Avion_1)
+                vuelo = Vuelo("AR 1240", "Chile", "New York", "12-08-2023 14:00", Avion_1)  
                 fila = int(input("Elija la fila del asiento: "))
                 columna = int(input("Elija la columna del asiento: "))
                 vuelo.reservar(pasajero, fila, columna)
-
+                print("reservacion realizada con exito")
 
             elif opcion1 == "2":
                 vuelo = Vuelo("LA 1311", "Peru", "China", "08-04-2023 13:30", Avion_2)
                 fila = int(input("Elija la fila del asiento: "))
                 columna = int(input("Elija la columna del asiento: "))
-                vuelo.reservar(pasajero, fila, columna)
 
+                vuelo.reservar(pasajero, fila, columna)
+                print("reservacion realizada con exito")
 
             elif opcion1 == "3":
                 vuelo = Vuelo("AK 4200", "Colombia", "España", "01-12-2023 16:00", Avion_3)
                 fila = int(input("Elija la fila del asiento: "))
                 columna = int(input("Elija la columna del asiento: "))
                 vuelo.reservar(pasajero, fila, columna)
-
+                print("reservacion realizada con exito")
 
             else:
                 print("Opción inválida. Seleccione una opción válida.")
-                return 
-
-
-        if  opcion == "2":
-            num_reservacion = int(input("Ingrese el número de reservación a cancelar: "))
-            vuelo.cancelar_reservacion(num_reservacion)
-
-        elif opcion == "3":
-            print("Saliendo del programa.")
-            break
-
-        else:
-            print("Opción no válida. Por favor, seleccione una opción válida.")
 
 if __name__ == "__main__":
     main()
