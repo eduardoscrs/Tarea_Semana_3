@@ -25,7 +25,15 @@ class Catalogo:
         self.libros = []
 
     def agregar_libro(self, libro):
-        self.libros.append(libro)
+        for existing_libro in self.libros:
+            if libro.isbn == existing_libro.isbn:
+                print("\nEl libro ya está en el catálogo.\n")
+                return
+        else:
+            self.libros.append(libro)
+            print("\nLibro agregado al catálogo.\n")
+
+
 
     def eliminar_libro(self, libro):
         if libro in self.libros:
@@ -91,7 +99,7 @@ while True:
         isbn = input("\nIngrese el ISBN del libro: \n")
         nuevo_libro = Libro(titulo, autor, isbn)
         catalogo.agregar_libro(nuevo_libro)
-        print("\nLibro agregado al catálogo.\n")
+
 
     elif opcion == "2":
         isbn = input("\nIngrese el ISBN del libro a eliminar: \n")
