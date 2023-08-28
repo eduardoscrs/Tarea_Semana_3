@@ -80,3 +80,117 @@ def mostrar_menu():
 
 catalogo = Catalogo()
 usuarios = []
+
+
+while True:
+    opcion = mostrar_menu()
+
+    if opcion == "1":
+        titulo = input("\nIngrese el título del libro: \n")
+        autor = input("\nIngrese el autor del libro: \n")
+        isbn = input("\nIngrese el ISBN del libro: \n")
+        nuevo_libro = Libro(titulo, autor, isbn)
+        catalogo.agregar_libro(nuevo_libro)
+        print("\nLibro agregado al catálogo.\n")
+
+    elif opcion == "2":
+        isbn = input("\nIngrese el ISBN del libro a eliminar: \n")
+        libro = catalogo.buscar_libro(isbn)
+        if libro:
+            catalogo.eliminar_libro(libro)
+            print("\nLibro eliminado del catálogo.\n")
+        else:
+            print("\nLibro no encontrado en el catálogo.\n")
+
+    elif opcion == "3":
+        nombre_usuario = input("\nIngrese el nombre del usuario: \n")
+        id_usuario = input("\nIngrese el ID del usuario: \n")
+        nuevo_usuario = Usuario(nombre_usuario, id_usuario)
+        usuarios.append(nuevo_usuario)
+        print("\nUsuario registrado.\n")
+
+    elif opcion == "4":
+        id_usuario = input("\nIngrese el ID del usuario a eliminar: \n")
+        usuario = catalogo.buscar_usuario(id_usuario)
+        if usuario:
+            usuarios.remove(usuario)
+            print("\nUsuario eliminado.\n")
+        else:
+            print("\nUsuario no encontrado.\n")
+
+    elif opcion == "5":
+        print("\nUsuarios registrados:")
+        for usuario in usuarios:
+            print(f"\nNombre: {usuario.nombre} - ID: {usuario.id_usuario}\n")
+
+    elif opcion == "6":
+        isbn = input("\nIngrese el ISBN del libro a prestar: \n")
+        libro = catalogo.buscar_libro(isbn)
+        if libro:
+            id_usuario = input("\nIngrese el ID del usuario: \n")
+            usuario = catalogo.buscar_usuario(id_usuario)
+            if usuario:
+                fecha_prestamo = input("\nIngrese la fecha de préstamo: \n")
+                try:
+                    datetime.strptime(fecha_prestamo, '%d-%m-%Y') 
+                except ValueError:
+                    print("\nFormato de fecha incorrecto. Use dd-mm-aaaa.\n")
+                    continue
+                prestamo = catalogo.prestar_libro(libro, usuario, fecha_prestamo)
+                prestamo = catalogo.prestar_libro(libro, usuario, fecha_prestamo)
+                if prestamo:
+                    print("\nLibro prestado.\n")
+                else:
+                    print("\nEl libro no está disponible para préstamo.\n")
+            else:
+                print("\nUsuario no registrado.\n")
+        else:
+            print("\nLibro no encontrado en el catálogo.\n")
+
+    elif opcion == "7":
+        isbn = input("\nIngrese el ISBN del libro a devolver: \n")
+        libro = catalogo.buscar_libro(isbn)
+        if libro:
+            id_usuario = input("\nIngrese el ID del usuario: \n")
+            usuario = catalogo.buscar_usuario(id_usuario)
+            if usuario:
+                for prestamo in usuario.historial_prestamos:
+                    if prestamo.libro.isbn == isbn and not prestamo.fecha_devolucion:
+                        fecha_devolucion = input("Ingrese la fecha de devolución: \n")
+                        catalogo.devolver_libro(prestamo, fecha_devolucion)
+                        print("\nLibro devuelto.\n")
+                        break
+                else:
+                    print("\nEl usuario no tiene un préstamo activo de este libro.\n")
+            else:
+                print("\nUsuario no registrado.\n")
+        else:
+            print("\nLibro no encontrado en el catálogo.\n")
+
+    elif opcion == "8":
+        libros_disponibles = catalogo.consultar_libros_disponibles()
+        if libros_disponibles:
+            for libro in libros_disponibles:
+                print(f"\nLibro: {libro.titulo} - Autor: {libro.autor}")
+        else:
+            print("\nNo hay libros disponibles en este momento.\n")
+
+    elif opcion == "9":
+        id_usuario = input("\nIngrese el ID del usuario: \n")
+        usuario = catalogo.buscar_usuario(id_usuario)
+        if usuario:
+            historial_prestamos = catalogo.historial_prestamos_usuario(usuario)
+            if historial_prestamos:
+                for prestamo in historial_prestamos:
+                    print(f"\nLibro: {prestamo.libro.titulo} - Fecha de préstamo: {prestamo.fecha_prestamo}\n")
+            else:
+                print("\nEl usuario no tiene historial de préstamos.")
+        else:
+            print("\nUsuario no registrado. \n")
+
+    elif opcion == "0":
+        print("\n¡Hasta luego!\n")
+        break
+
+    else:
+        print("\nOpción incorrecta. Por favor, seleccione una opción válida.\n")
