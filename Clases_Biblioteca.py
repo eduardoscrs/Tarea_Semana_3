@@ -70,9 +70,9 @@ class Catalogo:
         return usuario.historial_prestamos
 
 def mostrar_menu():
-    print("=" * 60)
+    print("-" * 60)
     print("\n ¡Bienvenido al Sistema de Gestión de Biblioteca! \n")
-    print("=" * 60)
+    print("-" * 60)
     print("1. Agregar un libro al catálogo")
     print("2. Eliminar un libro del catálogo")
     print("3. Registrar un nuevo usuario")
@@ -83,7 +83,8 @@ def mostrar_menu():
     print("8. Consultar los libros disponibles")
     print("9. Ver historial de préstamos de un usuario")
     print("0. Salir")
-    print("=" * 60)
+    print("." * 60)
+    print()
     return input("Seleccione una opción: ")
 
 catalogo = Catalogo()
