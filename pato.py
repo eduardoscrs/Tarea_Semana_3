@@ -1,9 +1,9 @@
-class Avion:
-    def __init__(self, modelo, filas, asientos_por_fila):
-        self.modelo = modelo
-        self.filas = filas
-        self.asientos_por_fila = asientos_por_fila
-        self.asientos_disponibles = [[True] * asientos_por_fila for _ in range(filas)]
+class Avion: 
+    def __init__(self, modelo, filas, asientos_por_fila):#metodo construcstor de la clase avion
+        self.modelo = modelo #asigna valor del argumento a modelo, para que el avion tenga un modelo
+        self.filas = filas#asigna valor del argumento filas, esto almacena el numero de filas del avion
+        self.asientos_por_fila = asientos_por_fila#asigna valor del argumento asientosporfila, esto almacena el numero de asientos por fila dentro del avion
+        self.asientos_disponibles = [[True] * asientos_por_fila for _ in range(filas)]#crea una matriz dependiendo de los asientos por fila y filas, se deja en true porque estan todos disponibles
 
 
 class Vuelo:
