@@ -237,5 +237,4 @@ while True:                                                                 # de
         print("¡Muchas gracias por visitarnos, hasta luego!")
         break
     else:
-
         print("Opción no válida. Por favor, selecciona una opción válida.") # si el numero ingresado no corresponde, debe volver a digitar un numero hasta que funcione
