@@ -1,7 +1,9 @@
 class Avion:
-    def __init__(self, modelo, numero_asientos):
+    def __init__(self, modelo, filas, asientos_por_fila):
         self.modelo = modelo
-        self.numero_asientos = numero_asientos
+        self.filas = filas
+        self.asientos_por_fila = asientos_por_fila
+        self.asientos_disponibles = [[True] * asientos_por_fila for _ in range(filas)]
 
 
 class Vuelo:
@@ -12,7 +14,7 @@ class Vuelo:
         self.fecha_hora = fecha_hora
         self.avion_asignado = avion_asignado
         self.reservaciones = []
-
+        self.asientos_reservados = [[None] * avion_asignado.asientos_por_fila for _ in range(avion_asignado.filas)]
 
     def agregar_reservacion(self, reservacion):
         if len(self.reservaciones) < self.avion_asignado.numero_asientos:
@@ -23,6 +25,13 @@ class Vuelo:
 
     def mostrar_pasajeros(self):
         return [reservacion.pasajero for reservacion in self.reservaciones]
+
+
+    def reservar_asiento(self, fila, columna, pasajero):
+        if self.asientos_reservados[fila][columna] is None:
+            self.asientos_reservados[fila][columna] = pasajero
+            return True
+        return False
 
 
 class Pasajero:
@@ -39,12 +48,13 @@ class Pasajero:
 
 
 class Reservacion:
-    def __init__(self, numero_reservacion, pasajero, vuelo):
+    def __init__(self, numero_reservacion, pasajero, vuelo, fila, columna):
         self.numero_reservacion = numero_reservacion
         self.pasajero = pasajero
         self.vuelo = vuelo
         self.estado = "reservado"
-
+        self.fila = fila
+        self.columna = columna
 
     def cancelar(self):
         self.estado = "cancelado"
@@ -83,7 +93,6 @@ def agregar_pasajero():
 
 
 def reservar_vuelo():
-    print(" ")
     numero_pasaporte = input("Ingrese el número de pasaporte del pasajero: ")
     numero_vuelo = input("Ingrese el número del vuelo que desea reservar: ")
     pasajero = None
@@ -97,24 +106,23 @@ def reservar_vuelo():
             vuelo = v
             break
     if pasajero is None or vuelo is None:
-        print(" ")
         print("No se encontró el pasajero o el vuelo.")
-        print(" ")
         return
     if vuelo in pasajero.vuelos_reservados:
-        print(" ")
         print("El pasajero ya ha reservado este vuelo previamente.")
-        print(" ")
         return
-    if vuelo.agregar_reservacion(Reservacion(len(vuelo.reservaciones) + 1, pasajero, vuelo)):
+    fila = int(input("Ingrese el número de fila: "))
+    columna = int(input("Ingrese el número de columna: "))
+    if fila < 0 or fila >= vuelo.avion_asignado.filas or columna < 0 or columna >= vuelo.avion_asignado.asientos_por_fila:
+        print("Asiento inválido.")
+        return
+    if vuelo.reservar_asiento(fila, columna, pasajero):
         pasajero.agregar_vuelo_reservado(vuelo)
-        print(" ")
+        reservacion = Reservacion(len(vuelo.reservaciones), pasajero, vuelo, fila, columna)
+        vuelo.reservaciones.append(reservacion)
         print("Reservación exitosa.")
-        print(" ")
     else:
-        print(" ")
-        print("No hay asientos disponibles en este vuelo.")
-        print(" ")
+        print("El asiento ya está ocupado.")
 
 
 def ver_reservaciones_pasajero():
@@ -139,9 +147,10 @@ def ver_reservaciones_pasajero():
     print(f"Reservaciones para el pasajero {pasajero.nombre} ({pasajero.numero_pasaporte}):")
     print(" ")
     for vuelo in pasajero.vuelos_reservados:
-        print(" ")
-        print(f"Vuelo {vuelo.numero_vuelo}: {vuelo.origen} → {vuelo.destino} ({vuelo.fecha_hora})")
-        print(" ")
+        for reservacion in vuelo.reservaciones:
+            if reservacion.pasajero == pasajero:
+                print(f"Vuelo {vuelo.numero_vuelo}: {vuelo.origen} → {vuelo.destino} ({vuelo.fecha_hora})")
+                print(f"Asiento: Fila {reservacion.fila}, Columna {reservacion.columna}")
 
 
 def ver_pasajeros_en_vuelo():
@@ -193,8 +202,8 @@ Bienvenidos a la Aereolínea
 6. Salir 
         ''')
 
-avion1 = Avion("Boeing 737", 150)
-avion2 = Avion("Airbus A320", 180)
+avion1 = Avion("bbbbb", 25, 6)
+avion2 = Avion("aaaaa", 25, 6)
 
 crear_vuelo("uno", "temuco", "santiago", "2023-09-01 08:00", avion1)
 crear_vuelo("dos", "santiago", "temuco", "2023-09-02 10:00", avion2)
