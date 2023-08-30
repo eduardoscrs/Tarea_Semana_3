@@ -129,55 +129,55 @@ def reservar_vuelo():
 
 def ver_reservaciones_pasajero():
     print(" ")
-    numero_pasaporte = input("Ingrese el número de pasaporte del pasajero: ")
-    pasajero = None
-    for p in pasajeros:
-        if p.numero_pasaporte == numero_pasaporte:
-            pasajero = p
+    numero_pasaporte = input("Ingrese el número de pasaporte del pasajero: ") # se solicita al usuario su numero de pasaporte
+    pasajero = None                                                           # 
+    for p in pasajeros:                                                       # itera por la lista para buscar el pasajero con el numero ingresado
+        if p.numero_pasaporte == numero_pasaporte:                            # se verifica si el numero de pasaporte coincide con el numero ingresado
+            pasajero = p                                                      # si encuentra un pasajero con el numero ingresado, se asigna a la variable pasajero y se rompe el ciclo
             break
-    if pasajero is None:
+    if pasajero is None:                                                      # verifica si no se enconntró ningun pasajero con el numero de pasaporte ingresado
         print(" ")
-        print("No se encontró el pasajero.")
+        print("No se encontró el pasajero.")                                  # imprime por pantalla que no se encontro ningun pasajero asociado
         print(" ")
         return
-    if not pasajero.vuelos_reservados:
+    if not pasajero.vuelos_reservados:                                        # verifica si el pasajero no tiene vuelos reservados
         print(" ")
-        print("El pasajero no tiene reservaciones.")
+        print("El pasajero no tiene reservaciones.")                          # imprime por pantalla que no tiene reservaciones
         print(" ")
         return
     print(" ")
     print(f"Reservaciones para el pasajero {pasajero.nombre} ({pasajero.numero_pasaporte}):")
     print(" ")
-    for vuelo in pasajero.vuelos_reservados:
-        for reservacion in vuelo.reservaciones:
-            if reservacion.pasajero == pasajero:
-                print(f"Vuelo {vuelo.numero_vuelo}: {vuelo.origen} → {vuelo.destino} ({vuelo.fecha_hora})")
-                print(f"Asiento: Fila {reservacion.fila}, Columna {reservacion.columna}")
+    for vuelo in pasajero.vuelos_reservados:                                                                    # recorre todos los vuelos reservados por el pasajero             
+        for reservacion in vuelo.reservaciones:                                                                 # recorre a traves de las reservaciones en el vuelo actual          
+            if reservacion.pasajero == pasajero:                                                                # verifica si la reservacion actual corresponde al pasajero actual             
+                print(f"Vuelo {vuelo.numero_vuelo}: {vuelo.origen} → {vuelo.destino} ({vuelo.fecha_hora})")     # muestra por pantalla el numero de vuelo, origen, destino ,fecha y hora
+                print(f"Asiento: Fila {reservacion.fila}, Columna {reservacion.columna}")                       # muestra el asiento reservado 
 
 
-def ver_pasajeros_en_vuelo():
+def ver_pasajeros_en_vuelo(): 
     print(" ")
-    numero_vuelo = input("Ingrese el número del vuelo: ")
-    vuelo = None
-    for v in vuelos_disponibles:
-        if v.numero_vuelo == numero_vuelo:
-            vuelo = v
+    numero_vuelo = input("Ingrese el número del vuelo: ")                       # se solicita al usuario el numero de vuelo
+    vuelo = None                                                                # se inicia vuelo sin valor 
+    for v in vuelos_disponibles:                                                # recorre por vuelos disponibles para buscar el vuelo con el numero ingresado
+        if v.numero_vuelo == numero_vuelo:                                      # verifica si el numero actual coincide con el ingresado
+            vuelo = v                                                           # si eso ocurre, asigna ese vuelo a la variable vuelo y se rompe el ciclo
             break
-    if vuelo is None:
-        print(" ")
+    if vuelo is None:                                                           # verifica si no se encontro ningun vuelo con el numero ingresado
+        print(" ")                                                              # si eso ocurre imprime por pantalla que no hay ningun vuelo asociado
         print("No se encontró el vuelo.")
         print(" ")
         return
-    if not vuelo.reservaciones:
+    if not vuelo.reservaciones:                                                 # verifica si el vuelo no tiene reservaciones
         print(" ")
-        print("No hay pasajeros en este vuelo.")
+        print("No hay pasajeros en este vuelo.")                                # si eso ocurre imprime por pantalla que no hay pasajeros en ese vuelo
         print(" ")
         return
     print(" ")
-    print(f"Pasajeros en el vuelo {vuelo.numero_vuelo} ({vuelo.origen} → {vuelo.destino}):")
-    for pasajero in vuelo.mostrar_pasajeros():
+    print(f"Pasajeros en el vuelo {vuelo.numero_vuelo} ({vuelo.origen} → {vuelo.destino}):")    # Muestra el número, origen y destino del vuelo para indicar que se mostrarán los pasajeros
+    for pasajero in vuelo.mostrar_pasajeros():                                      # recorre a traves de la lista de pasajeros obtenida utilizando el metodo mostrar pasajeros() del objeto vuelo
         print(" ")
-        print(f"Nombre: {pasajero.nombre}, Pasaporte: {pasajero.numero_pasaporte}")
+        print(f"Nombre: {pasajero.nombre}, Pasaporte: {pasajero.numero_pasaporte}") # Muestra el nombre y número de pasaporte del pasajero actual.
         print(" ")
 
 
@@ -190,11 +190,12 @@ def ver_todos_los_pasajeros():
         print(" ")
 
 
-def mostrar_menu():
+def mostrar_menu():                                                         # funcion que muestra el menu dentro del bucle principal
     print('''
 ==================================================
 Bienvenidos a la Aereolínea
 ==================================================
+
 1. Agregar Pasajero:
 2. Mostrar Vuelos Disponibles:
 3. Reservar Vuelo:
@@ -202,16 +203,17 @@ Bienvenidos a la Aereolínea
 5. Ver Lista de Pasajeros en un Vuelo:
 6. Ver los pasajeros agregados:
 7. Salir 
+
         ''')
 
-avion1 = Avion("bbbbb", 25, 6)
-avion2 = Avion("aaaaa", 25, 6)
+avion1 = Avion("bbbbb", 25, 6)                                              # avion de ejemplo
+avion2 = Avion("aaaaa", 25, 6)                                              # avion de ejemplo
 
-crear_vuelo("uno", "temuco", "santiago", "2023-09-01 08:00", avion1)
-crear_vuelo("dos", "santiago", "temuco", "2023-09-02 10:00", avion2)
+crear_vuelo("1", "temuco", "santiago", "2023-09-01 08:00", avion1)          # vuelo de ejemplo
+crear_vuelo("2", "santiago", "temuco", "2023-09-02 10:00", avion2)          # vuelo de ejemplo
 
 
-while True:
+while True:                                                                 # dependiendo de la opcion ingresada por el usuario, el bucle llama a las funciones solicitadas
     mostrar_menu()
     opcion = input("Selecciona una opción: ")
     if opcion == "1":
@@ -235,4 +237,4 @@ while True:
         print("¡Muchas gracias por visitarnos, hasta luego!")
         break
     else:
-        print("Opción no válida. Por favor, selecciona una opción válida.")
+        print("Opción no válida. Por favor, selecciona una opción válida.") # si el numero ingresado no corresponde, debe volver a digitar un numero hasta que funcione
