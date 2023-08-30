@@ -177,7 +177,7 @@ def ver_pasajeros_en_vuelo():
     print(f"Pasajeros en el vuelo {vuelo.numero_vuelo} ({vuelo.origen} → {vuelo.destino}):")    # Muestra el número, origen y destino del vuelo para indicar que se mostrarán los pasajeros
     for pasajero in vuelo.mostrar_pasajeros():                                      # recorre a traves de la lista de pasajeros obtenida utilizando el metodo mostrar pasajeros() del objeto vuelo
         print(" ")
-        print(f"Nombre: {pasajero.nombre}, Pasaporte: {pasajero.numero_pasaporte}") # Muestra el nombre y número de pasaporte del pasajero actual.
+        print(f"Nombre: {pasajero.nombre}, Numero Pasaporte: {pasajero.numero_pasaporte}") # Muestra el nombre y número de pasaporte del pasajero actual.
         print(" ")
 
 
