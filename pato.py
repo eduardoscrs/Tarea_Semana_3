@@ -198,8 +198,8 @@ Bienvenidos a la Aereolínea
 3. Reservar Vuelo:
 4. Ver Reservaciones:
 5. Ver Lista de Pasajeros en un Vuelo:
-7. Ver los pasajeros agregados:
-6. Salir 
+6. Ver los pasajeros agregados:
+7. Salir 
         ''')
 
 avion1 = Avion("bbbbb", 25, 6)
