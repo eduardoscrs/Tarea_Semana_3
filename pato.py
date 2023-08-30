@@ -185,8 +185,8 @@ def ver_todos_los_pasajeros():
     print(" ")
     print("Lista de todos los pasajeros:")
     print(" ")
-    for pasajero in pasajeros:
-        print(f"Nombre: {pasajero.nombre}, Pasaporte: {pasajero.numero_pasaporte}")
+    for pasajero in pasajeros:                                # recorre la lista pasajeros e imprime informacion sobre cada pasajero 
+        print(f"Nombre: {pasajero.nombre}, Pasaporte: {pasajero.numero_pasaporte}") # muestra el nombre y el numero de pasaporte de cada pasajero
         print(" ")
 
 
