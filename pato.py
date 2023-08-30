@@ -107,21 +107,21 @@ def reservar_vuelo():
         if v.numero_vuelo == numero_vuelo:                                  # Condición para verificar si el vuelo está disponible
             vuelo = v                                                       # Asignar vuelo a la variable 
             break
-    if pasajero is None or vuelo is None:
+    if pasajero is None or vuelo is None:                                   # Condicion para verificar si el pasajero o el vuelo no se encuentran 
         print("No se encontró el pasajero o el vuelo.")
         return
-    if vuelo in pasajero.vuelos_reservados:
+    if vuelo in pasajero.vuelos_reservados:                                 # Condicion para verificar si el pasajero se encuentra en vuelos reservados
         print("El pasajero ya ha reservado este vuelo previamente.")
         return
-    fila = int(input("Ingrese el número de fila: "))
+    fila = int(input("Ingrese el número de fila: "))                        
     columna = int(input("Ingrese el número de columna: "))
-    if fila < 0 or fila >= vuelo.avion_asignado.filas or columna < 0 or columna >= vuelo.avion_asignado.asientos_por_fila:
+    if fila < 0 or fila >= vuelo.avion_asignado.filas or columna < 0 or columna >= vuelo.avion_asignado.asientos_por_fila: # Condicion para que el pasajero no registe asientos invalidos 
         print("Asiento inválido.")
         return
-    if vuelo.reservar_asiento(fila, columna, pasajero):
-        pasajero.agregar_vuelo_reservado(vuelo)
-        reservacion = Reservacion(len(vuelo.reservaciones), pasajero, vuelo, fila, columna)
-        vuelo.reservaciones.append(reservacion)
+    if vuelo.reservar_asiento(fila, columna, pasajero):                     # Si la funcion reservar_asiento del objeto vuelo retorna True, el asiento se puede reservar
+        pasajero.agregar_vuelo_reservado(vuelo)                             # Agregamos el vuelo actual a la lista de vuelos reservados por el pasajero
+        reservacion = Reservacion(len(vuelo.reservaciones), pasajero, vuelo, fila, columna)     # Creamos un objeto de tipo Reservacion con la información de la reserva
+        vuelo.reservaciones.append(reservacion)                             # Agregamos la nueva reservación a la lista de reservaciones del vuelo
         print("Reservación exitosa.")
     else:
         print("El asiento ya está ocupado.")
@@ -185,8 +185,8 @@ def ver_todos_los_pasajeros():
     print(" ")
     print("Lista de todos los pasajeros:")
     print(" ")
-    for pasajero in pasajeros:
-        print(f"Nombre: {pasajero.nombre}, Pasaporte: {pasajero.numero_pasaporte}")
+    for pasajero in pasajeros:                                # recorre la lista pasajeros e imprime informacion sobre cada pasajero 
+        print(f"Nombre: {pasajero.nombre}, Pasaporte: {pasajero.numero_pasaporte}") # muestra el nombre y el numero de pasaporte de cada pasajero
         print(" ")
 
 
@@ -237,4 +237,5 @@ while True:                                                                 # de
         print("¡Muchas gracias por visitarnos, hasta luego!")
         break
     else:
+
         print("Opción no válida. Por favor, selecciona una opción válida.") # si el numero ingresado no corresponde, debe volver a digitar un numero hasta que funcione
